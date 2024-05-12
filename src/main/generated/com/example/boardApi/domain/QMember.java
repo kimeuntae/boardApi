@@ -22,6 +22,8 @@ public class QMember extends EntityPathBase<Member> {
 
     public final NumberPath<Integer> age = createNumber("age", Integer.class);
 
+    public final SetPath<Authority, QAuthority> authorities = this.<Authority, QAuthority>createSet("authorities", Authority.class, QAuthority.class, PathInits.DIRECT2);
+
     public final ListPath<Board, QBoard> boardList = this.<Board, QBoard>createList("boardList", Board.class, QBoard.class, PathInits.DIRECT2);
 
     public final StringPath email = createString("email");

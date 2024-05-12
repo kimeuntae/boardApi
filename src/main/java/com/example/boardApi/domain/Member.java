@@ -5,12 +5,15 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
+@Accessors(chain = true)
 @NoArgsConstructor
 public class Member {
 
@@ -23,6 +26,13 @@ public class Member {
     private String password;
     private String use_yn;
     private int age;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_authority",
+            joinColumns = {@JoinColumn(name = "member_id", referencedColumnName = "member_id")},
+            inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "authority_name")})
+    private Set<Authority> authorities;
 
     @OneToMany(mappedBy = "member")
     private List<Board> boardList = new ArrayList<>();
