@@ -32,8 +32,10 @@ public class CustomUserDetailsService  implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return memberRepository.findByEmail(email)
-                .map(member -> getUser(email, member))
+                .map(member -> getUser(email, member)) //해당부분에서 패스워드 체킹
                 .orElseThrow(() -> new UsernameNotFoundException(email));
+
+
     }
 
     /**

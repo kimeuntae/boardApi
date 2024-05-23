@@ -28,7 +28,7 @@ public class JwtFilter extends GenericFilterBean {
 
     /**
      * 실제 필터릴 로직
-     * 토큰의 인증정보를 SecurityContext에 저장하는 역할 수행
+     * 토큰의 인증 정보를 SecurityContext에 저장하는 역할 수행
      */
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
@@ -36,7 +36,7 @@ public class JwtFilter extends GenericFilterBean {
         String jwt = resolveToken(request);
         String requestURI = request.getRequestURI();
 
-        /** 토큰 체크 */
+        /**  유요한 토큰 체크 */ /** null인경우 인증으로 */
         if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
             Authentication authentication = tokenProvider.getAuthentication(jwt);
             SecurityContextHolder.getContext().setAuthentication(authentication);
