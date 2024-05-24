@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/boardApi
+    url: jdbc:h2:mem:boardApi
     username: sa
     password: sa
     driver-class-name: org.h2.Driver
@@ -23,3 +23,8 @@ jwt:
 logging:
   level:
     org.hibernate.SQL: debug
+    org:
+      springframework:
+        security:
+          web:
+            FilterChainProxy: debug

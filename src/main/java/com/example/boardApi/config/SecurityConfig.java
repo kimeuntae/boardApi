@@ -1,6 +1,9 @@
 package com.example.boardApi.config;
 
 import com.example.boardApi.config.jwt.*;
+import com.example.boardApi.filter.AuthoritiesLoggingAfterFilter;
+import com.example.boardApi.filter.AuthoritiesLoggingAtFilter;
+import com.example.boardApi.filter.ReqeustVaildationBeforeFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -17,6 +20,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -95,14 +99,19 @@ public class SecurityConfig {
     @Order(1)
     public SecurityFilterChain filterChain2(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
+                /** 요청때마다 Filter호출 */
+                .addFilterBefore(new ReqeustVaildationBeforeFilter(), BasicAuthenticationFilter.class)
+                .addFilterAfter(new AuthoritiesLoggingAfterFilter(), BasicAuthenticationFilter.class)
+                .addFilterAt(new AuthoritiesLoggingAtFilter(), BasicAuthenticationFilter.class)
                 //.securityMatcher("/form/**")
                 .formLogin((form) -> form
                         .loginProcessingUrl("/form/login_authenticate").permitAll()
                         .defaultSuccessUrl("/form/login_authenticate2", true).permitAll()
                  )
                 .authorizeHttpRequests((e) -> e
-                        .requestMatchers("/form/login_authenticate").permitAll()
+                        //.requestMatchers("/form/login_authenticate").permitAll()
                         .requestMatchers("/", "/loginForm**", "/signup**", "/users").permitAll()
+                        .requestMatchers(PathRequest.toH2Console()).permitAll()// h2-console, favicon.ico 요청 인증 무시
                         .anyRequest().authenticated())
                 .csrf((c) -> c.disable());
         return httpSecurity.build();

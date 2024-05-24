@@ -19,11 +19,12 @@ import java.security.Security;
 /**
  * 실제로 이 컴포넌트를 이용하는 것은 인증 작업을 진행하는 Filter
  * 이 필터는 검증이 끝난 JWT로부터 유저정보를 받아와서 UsernamePasswordAuthenticationFilter 로 전달
+ * GenericFilterBean 는 한번만 호출됌 
  */
 @RequiredArgsConstructor
 @Slf4j
 public class JwtFilter extends GenericFilterBean {
-
+    
     private final TokenProvider tokenProvider;
 
     /**
@@ -44,6 +45,7 @@ public class JwtFilter extends GenericFilterBean {
         } else {
             log.info("유효한 JWT 토큰이 없습니다, uri: {}", requestURI);
         }
+        log.info("JwtFilter [doFilter]");
         filterChain.doFilter(servletRequest, servletResponse);
 
     }

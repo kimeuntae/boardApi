@@ -27,16 +27,16 @@ public class FormAuthController {
      * CustomAuthenticationProvider 통해 인증
      * */
     @GetMapping("/login_authenticate2")
-    public String login_authenticate(@AuthenticationPrincipal MemberPrincipalDetails memberPrincipalDetails) {
+    public ResponseEntity<String> login_authenticate(@AuthenticationPrincipal MemberPrincipalDetails memberPrincipalDetails) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        MemberPrincipalDetails userDetails = (MemberPrincipalDetails) principal;
+        //MemberPrincipalDetails userDetails = (MemberPrincipalDetails) principal;
         log.debug("login_authenticate");
-        return null;
+        return ResponseEntity.ok().body(principal.toString());
     }
 
-    @GetMapping("/login_authenticate")
-    public ResponseEntity<TokenDto> test(@AuthenticationPrincipal MemberPrincipalDetails memberPrincipalDetails) {
+    @GetMapping("/login_authenticate3")
+    public ResponseEntity<String> test(@AuthenticationPrincipal MemberPrincipalDetails memberPrincipalDetails) {
         log.debug("TEST");
-        return null;
+        return ResponseEntity.ok().body("성공");
     }
 }
