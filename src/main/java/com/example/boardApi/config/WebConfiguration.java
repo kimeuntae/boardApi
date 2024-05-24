@@ -7,6 +7,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 @Configuration
@@ -20,7 +21,8 @@ public class WebConfiguration implements WebMvcConfigurer {
                 .allowedOriginPatterns("*")
                 .allowedMethods("OPTIONS", "GET", "PUT", "POST", "DELETE")
                 .allowedHeaders("*")
-                .exposedHeaders("WWW-Authenticate", "Content-Disposition")
+                /** 응답헤더 설정  클라이언트에서 받지 못함 */
+                .exposedHeaders("Authorization", "Authorization-refresh","WWW-Authenticate", "Content-Disposition")
                 .allowCredentials(true)
                 .maxAge(TimeUnit.DAYS.toSeconds(1));
     }

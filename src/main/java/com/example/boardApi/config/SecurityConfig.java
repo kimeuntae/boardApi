@@ -64,7 +64,7 @@ public class SecurityConfig {
                 //.csrf((c) -> c.disable())
                 .csrf((c) -> c.ignoringRequestMatchers("/api/**","/board/**","/login")) //csrf 해당 URL 비활성화한다.
                 .headers((h) -> h.frameOptions(frame -> frame.disable()))
-                /** 세션을 사용하지 않기 때문에 STATELESS로 설정 */
+                /** *JWT토큰사용시 필수*  세션을 사용하지 않기 때문에 STATELESS로 설정 */
                 .sessionManagement((session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)))
                 .httpBasic(withDefaults())
                 /** 5.7.0 이상 부터는  WebSecurityConfigurerAdapter deprecated 되어 아래와같이 사용 */
