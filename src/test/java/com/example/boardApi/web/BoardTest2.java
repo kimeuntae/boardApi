@@ -20,6 +20,7 @@ import java.util.Optional;
 public class BoardTest2 {
 	//tt
 	//tt
+	//tt
     @Autowired
     MemberRepository memberRepository;
     @Autowired
