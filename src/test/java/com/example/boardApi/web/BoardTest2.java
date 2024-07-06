@@ -29,6 +29,7 @@ public class BoardTest2 {
 	//개발브런치 생성
 	//개발브런치 커밋 후 푸시
 	//개발브런치 풀
+	//원격에서 머지해보기
     @Autowired
     MemberRepository memberRepository;
     @Autowired
