@@ -25,6 +25,7 @@ public class BoardTest2 {
 	//aa
 	
 	//파일충돌1
+	//파일충돌2
     @Autowired
     MemberRepository memberRepository;
     @Autowired
