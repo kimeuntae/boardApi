@@ -26,6 +26,8 @@ public class BoardTest2 {
 	
 	//파일충돌1
 	//파일충돌2
+	//개발브런치 생성
+	//개발브런치 커밋 후 푸시
     @Autowired
     MemberRepository memberRepository;
     @Autowired
