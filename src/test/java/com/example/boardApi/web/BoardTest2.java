@@ -21,6 +21,8 @@ public class BoardTest2 {
 	//tt
 	//tt
 	//tt
+
+	//aa
     @Autowired
     MemberRepository memberRepository;
     @Autowired
