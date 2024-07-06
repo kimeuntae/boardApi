@@ -23,6 +23,8 @@ public class BoardTest2 {
 	//tt
 
 	//aa
+	
+	//파일충돌1
     @Autowired
     MemberRepository memberRepository;
     @Autowired
