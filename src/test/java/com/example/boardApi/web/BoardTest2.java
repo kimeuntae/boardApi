@@ -19,6 +19,8 @@ import java.util.Optional;
 @Rollback(value = false)
 public class BoardTest2 {
 	//tt
+
+	//aa
     @Autowired
     MemberRepository memberRepository;
     @Autowired
