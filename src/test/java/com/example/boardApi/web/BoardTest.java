@@ -26,6 +26,7 @@ public class BoardTest {
     @Autowired
     ReplyRepository replyRepository;
 
+    //테스트
     @Test
     public void test() {
         /*Member findMember = memberRepository.findByEmail("etkim87@daum.net4").get();
