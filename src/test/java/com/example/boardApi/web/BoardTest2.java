@@ -30,6 +30,7 @@ public class BoardTest2 {
 	//개발브런치 커밋 후 푸시
 	//개발브런치 풀
 	//원격에서 머지해보기
+	//et_branche 에서 커밋 푸시
     @Autowired
     MemberRepository memberRepository;
     @Autowired
